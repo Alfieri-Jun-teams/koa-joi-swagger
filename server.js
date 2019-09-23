@@ -34,19 +34,20 @@ app.use(async (ctx, next) => {
 })
 
 const keys = Object.keys(appModule.context)
-keys.map(key => {
+keys.forEach((key) => {
   Object.defineProperty(app.context, key, appModule.context[key])
 })
 
 app
   .use(logger())
-  .use(views(path.join('./views'), {map: {html: 'nunjucks'}}))
+  .use(views(path.join('./views'), { map: { html: 'nunjucks' } }))
   .use(koabody({}))
   .use(appModule.router.middleware())
   .use(bodyParser())
 
 if (!module.parent) {
   app.listen(config.port)
+  // eslint-disable-next-line no-console
   console.log(`✅  The server is running at http://localhost:${config.port}`)
 }
 

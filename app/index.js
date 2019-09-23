@@ -1,4 +1,4 @@
-const appRoot = require('../config').appRoot
+const { appRoot } = require('../config')
 
 const files = [
   {
@@ -11,6 +11,10 @@ const files = [
   }
 ]
 
-files.map(file => {
-  exports[file.name] = require(file.path)
+files.forEach((item) => {
+  /* eslint-disable import/no-dynamic-require */
+  /* eslint-disable global-require */
+  exports[item.name] = require(`${item.path}`)
+  /* eslint-enable global-require */
+  /* eslint-enable import/no-dynamic-require */
 })

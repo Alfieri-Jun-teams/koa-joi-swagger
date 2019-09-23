@@ -1,19 +1,19 @@
 const request = require('supertest')
 const should = require('should')
+const { describe } = require('mocha')
+const { it } = require('mocha')
 const server = require('./index')
-const describe = require('mocha').describe
-const it = require('mocha').it
 
 let swagger
 
-describe('GET /swagger.json!!!', function () {
-  it('respond with json', function () {
+describe('GET /swagger.json!!!', () => {
+  it('respond with json', () => {
     request(server)
       .get('/v1/swagger.json')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
-      .then(response => {
+      .then((response) => {
         swagger = response.body
       })
   })
@@ -29,13 +29,14 @@ describe('test swagger', () => {
   })
 })
 
-describe('GET /apidoc!!!', function () {
-  it('respond with json', function () {
+describe('GET /apidoc!!!', () => {
+  it('respond with json', () => {
     request(server)
       .get('/v1/apidoc')
       .set('Accept', 'text/html')
       .expect(200)
-      .then(response => {
+      .then((response) => {
+        // eslint-disable-next-line no-unused-expressions
         should(response.body).be.html
       })
   })

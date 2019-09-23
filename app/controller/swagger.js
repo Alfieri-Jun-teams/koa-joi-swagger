@@ -1,26 +1,29 @@
 const swagger = require('../common/swagger')
 
 class SwaggerController {
+  // eslint-disable-next-line class-methods-use-this
   async doc (ctx) {
     ctx.body = await swagger.generateSwagger(
       {
-        'title': 'Demo API document',
-        'version': 'v3',
-        'description': 'Using swagger3.0 & joi to generate swagger.json',
-        'contact': {
-          'name': 'AlfieriChou',
-          'email': 'alfierichou@gmail.com',
-          'url': 'https://alfierichou.com'
+        title: 'Demo API document',
+        version: 'v3',
+        description: 'Using swagger3.0 & joi to generate swagger.json',
+        contact: {
+          name: 'AlfieriChou',
+          email: 'alfierichou@gmail.com',
+          url: 'https://alfierichou.com'
         },
-        'license': {
-          'name': 'MIT',
-          'url': 'https://github.com/Alfieri-Jun-teams/koa_joi_swagger/blob/master/LICENSE'
+        license: {
+          name: 'MIT',
+          url: 'https://github.com/Alfieri-Jun-teams/koa_joi_swagger/blob/master/LICENSE'
         }
       }
     )
   }
+
+  // eslint-disable-next-line class-methods-use-this
   async index (ctx) {
-    await ctx.render('index.html', {url: '/v1/swagger.json'})
+    await ctx.render('index.html', { url: '/v1/swagger.json' })
   }
 }
 
