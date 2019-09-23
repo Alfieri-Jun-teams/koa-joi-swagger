@@ -1,5 +1,5 @@
 {
-  "name": "koa_joi_swagger",
+  "name": "koa-joi-swagger",
   "version": "1.0.0",
   "description": "koa joi swagger",
   "main": "server.js",

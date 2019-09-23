@@ -67,53 +67,33 @@ const generateSwagger = (info) => {
           })
         }
 
-        // if (value.header) {
-        //   let params = convert(Joi.object(value.header))
-        //   for (let prop in params.properties) {
-        //     let field = {}
-        //     field.name = prop
-        //     field.in = 'header'
-        //     field.description = params.properties[prop].description
-        //     field.items = {
-        //       'type': params.properties[prop].type
-        //     }
-        //     field.required = true
-        //     parameters[prop] = field
-        //     content.parameters.push({'$ref': `#/parameters/${prop}`})
-        //   }
-        // }
-
         if (value.requestBody) {
-          const params = convert(Joi.object(value.requestBody.body))
-          const request = {}
-          request.requestBody = {}
-          const bodySchema = request.requestBody
-          bodySchema.required = true
-          bodySchema.content = {
-            'application/json': {
-              schema: {
-                type: params.type,
-                properties: params.properties,
-                required: value.requestBody.required
+          const { type, properties } = convert(Joi.object(value.requestBody.body))
+          content.requestBody = {
+            required: true,
+            content: {
+              'application/json': {
+                schema: {
+                  type,
+                  properties,
+                  required: value.requestBody.required
+                }
               }
             }
           }
-          content.requestBody = request.requestBody
         }
 
         if (value.output) {
-          const response = value.output
           const outputTemp = {}
-          const keys = _.keys(response)
           const resp = {}
-          keys.forEach((k) => {
+          Object.entries(value.output).forEach(([k, v]) => {
             resp[k] = {
               description: 'response',
               content: {
                 'application/json': {
                   schema: {
-                    type: convert(response[k]).type,
-                    properties: convert(response[k]).properties
+                    type: convert(v).type,
+                    properties: convert(v).properties
                   }
                 }
               }
