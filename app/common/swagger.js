@@ -2,7 +2,61 @@ const Joi = require('joi')
 const convert = require('joi-to-json-schema')
 const _ = require('lodash')
 const dir = require('dir_filenames')
+const path = require('path')
 const { appRoot } = require('../../config')
+
+const parameters = (value) => {
+  let content = {}
+  if (value.query) {
+    content.parameters = []
+    const params = convert(Joi.object(value.query))
+    Object.entries(params.properties).forEach((prop, v) => {
+      content.parameters.push({
+        name: prop,
+        in: 'query',
+        description: v.description,
+        schema: {
+          type: v.type
+        },
+        required: false
+      })
+    })
+  }
+
+  if (value.params) {
+    content.parameters = []
+    const params = convert(Joi.object(value.params))
+    Object.entries(params.properties).forEach((prop, v) => {
+      content.parameters.push({
+        name: prop,
+        in: 'path',
+        description: v.description,
+        schema: {
+          type: v.type
+        },
+        required: true
+      })
+    })
+  }
+
+  if (value.requestBody) {
+    const { type, properties } = convert(Joi.object(value.requestBody.body))
+    content.requestBody = {
+      required: true,
+      content: {
+        'application/json': {
+          schema: {
+            type,
+            properties,
+            required: value.requestBody.required
+          }
+        }
+      }
+    }
+  }
+
+  return content
+}
 
 const generateSwagger = (info) => {
   const items = dir(`${appRoot}/app/models`)
@@ -16,7 +70,7 @@ const generateSwagger = (info) => {
     const model = require(item)
     /* eslint-enable global-require */
     /* eslint-enable import/no-dynamic-require */
-    const lowerCaseSchemaName = item.split('/').pop().replace(/\.\w+$/, '')
+    const lowerCaseSchemaName = path.parse(item).base.replace(/\.\w+$/, '')
     const schemaName = lowerCaseSchemaName.slice(0, 1).toUpperCase() + lowerCaseSchemaName.slice(1)
     Object.entries(model).forEach(([key, value]) => {
       if (key === 'schema') {
@@ -31,56 +85,8 @@ const generateSwagger = (info) => {
         const content = {
           tags: value.tags,
           summary: value.summary,
-          description: value.description
-        }
-
-        // content.parameters = []
-        if (value.query) {
-          content.parameters = []
-          const params = convert(Joi.object(value.query))
-          Object.entries(params.properties).forEach((prop, v) => {
-            content.parameters.push({
-              name: prop,
-              in: 'query',
-              description: v.description,
-              schema: {
-                type: v.type
-              },
-              required: false
-            })
-          })
-        }
-
-        if (value.params) {
-          content.parameters = []
-          const params = convert(Joi.object(value.params))
-          Object.entries(params.properties).forEach((prop, v) => {
-            content.parameters.push({
-              name: prop,
-              in: 'path',
-              description: v.description,
-              schema: {
-                type: v.type
-              },
-              required: true
-            })
-          })
-        }
-
-        if (value.requestBody) {
-          const { type, properties } = convert(Joi.object(value.requestBody.body))
-          content.requestBody = {
-            required: true,
-            content: {
-              'application/json': {
-                schema: {
-                  type,
-                  properties,
-                  required: value.requestBody.required
-                }
-              }
-            }
-          }
+          description: value.description,
+          ...parameters(value)
         }
 
         if (value.output) {
@@ -130,12 +136,12 @@ const generateSwagger = (info) => {
     mergeMethod = _.merge(mergeMethod, methods[i])
   }
 
-  const swagger = {}
-  swagger.openapi = '3.0.0'
-  swagger.info = info
-  swagger.paths = mergeMethod
-  swagger.components = components
-  return swagger
+  return {
+    openapi: '3.0.0',
+    info,
+    paths: mergeMethod,
+    components
+  }
 }
 
 module.exports = {

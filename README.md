@@ -1,7 +1,6 @@
 # koa joi swagger
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alfieri-Jun-teams/koa_joi_swagger.svg)](https://greenkeeper.io/)
-
 [![Build Status][travis-image]][travis-url]
 [![codecov][codecov-image]][codecov-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
