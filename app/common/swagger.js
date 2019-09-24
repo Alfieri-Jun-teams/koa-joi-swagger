@@ -10,7 +10,7 @@ const parameters = (value) => {
   if (value.query) {
     content.parameters = []
     const params = convert(Joi.object(value.query))
-    Object.entries(params.properties).forEach((prop, v) => {
+    Object.entries(params.properties).forEach(([prop, v]) => {
       content.parameters.push({
         name: prop,
         in: 'query',
@@ -26,7 +26,7 @@ const parameters = (value) => {
   if (value.params) {
     content.parameters = []
     const params = convert(Joi.object(value.params))
-    Object.entries(params.properties).forEach((prop, v) => {
+    Object.entries(params.properties).forEach(([prop, v]) => {
       content.parameters.push({
         name: prop,
         in: 'path',
