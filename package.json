@@ -6,7 +6,6 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "release": "NODE_ENV=release nodemon server.js",
     "db:migrate": "node ./migration/migration.js",
     "db:migrate:prod": "node ./migration/migration.js prod",
     "db:migrate:release": "node ./migration/migration.js release",
@@ -15,7 +14,8 @@
     "db:drop:release": "node ./migration/drop.js release",
     "lint": "eslint --ext .js ./ --fix",
     "test": "nyc mocha --exit",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
@@ -74,6 +74,7 @@
     "nodemon": "^1.18.3",
     "nyc": "14.1.1",
     "should": "^13.2.3",
+    "standard-version": "^7.0.0",
     "supertest": "4.0.2"
   }
 }
