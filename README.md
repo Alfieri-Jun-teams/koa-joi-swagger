@@ -1,6 +1,6 @@
 # koa joi swagger
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Alfieri-Jun-teams/koa_joi_swagger.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Alfieri-Jun-teams/koa-joi-swagger.svg)](https://greenkeeper.io/)
 [![Build Status][travis-image]][travis-url]
 [![codecov][codecov-image]][codecov-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
@@ -81,11 +81,11 @@ update: {
 }
 ```
 
-[travis-image]: https://travis-ci.org/Alfieri-Jun-teams/koa_joi_swagger.svg?branch=master
-[travis-url]: https://travis-ci.org/Alfieri-Jun-teams/koa_joi_swagger
-[codecov-image]: https://codecov.io/gh/Alfieri-Jun-teams/koa_joi_swagger/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/Alfieri-Jun-teams/koa_joi_swagger
-[daviddm-image]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger.svg?theme=shields.io
+[travis-image]: https://travis-ci.org/Alfieri-Jun-teams/koa-joi-swagger.svg?branch=master
+[travis-url]: https://travis-ci.org/Alfieri-Jun-teams/koa-joi-swagger
+[codecov-image]: https://codecov.io/gh/Alfieri-Jun-teams/koa-joi-swagger/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/Alfieri-Jun-teams/koa-joi-swagger
+[daviddm-image]: https://david-dm.org/Alfieri-Jun-teams/koa-joi-swagger.svg?theme=shields.io
 [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [license-url]: https://opensource.org/licenses/MIT
-[daviddm-url]: https://david-dm.org/Alfieri-Jun-teams/koa_joi_swagger
+[daviddm-url]: https://david-dm.org/Alfieri-Jun-teams/koa-joi-swagger
