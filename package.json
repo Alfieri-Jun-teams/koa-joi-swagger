@@ -50,7 +50,7 @@
     "joi-to-json-schema": "5.1.0",
     "jsonschema": "^1.2.4",
     "knex": "0.19.4",
-    "koa": "^2.5.2",
+    "koa": "^2.9.0",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
