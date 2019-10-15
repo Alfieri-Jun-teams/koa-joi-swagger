@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/Alfieri-Jun-teams/koa_joi_swagger#readme",
   "dependencies": {
-    "bluebird": "^3.5.5",
+    "bluebird": "^3.7.1",
     "dir_filenames": "^1.0.6",
     "joi": "^14.3.0",
     "joi-to-json-schema": "5.1.0",
