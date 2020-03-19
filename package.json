@@ -49,7 +49,7 @@
     "joi": "^14.3.0",
     "joi-to-json-schema": "5.1.0",
     "jsonschema": "^1.2.4",
-    "knex": "0.19.4",
+    "knex": "0.20.12",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
