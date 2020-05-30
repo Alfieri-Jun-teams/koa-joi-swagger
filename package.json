@@ -54,7 +54,7 @@
     "koa-body": "^4.0.4",
     "koa-bodyparser": "^4.2.1",
     "koa-logger": "^3.2.0",
-    "koa-router": "^7.4.0",
+    "koa-router": "^9.0.1",
     "koa-views": "^6.1.4",
     "lodash": "^4.17.10",
     "mysql": "^2.16.0",
